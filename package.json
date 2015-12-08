@@ -1,0 +1,24 @@
+{
+  "name": "react-es6-template",
+  "version": "1.0.0",
+  "description": "A simple reactjs es6 boilerplate to get an app up and running quickly.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nilghe/react-es6-template.git"
+  },
+  "keywords": [
+    "reactjs",
+    "es6",
+    "boilerplate"
+  ],
+  "author": "Chris Nilghe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nilghe/react-es6-template/issues"
+  },
+  "homepage": "https://github.com/nilghe/react-es6-template#readme"
+}
