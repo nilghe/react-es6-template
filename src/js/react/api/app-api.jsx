@@ -2,7 +2,7 @@ module.exports = {
     fetchData(opts) {
 
         let options = {
-            url: 'http://jsonplaceholder.typicode.com/posts',
+            url: 'http://jsonplaceholder.typicode.com/users',
             method: 'GET'
         }
 

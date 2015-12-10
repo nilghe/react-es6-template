@@ -33,6 +33,11 @@ var paths = {
     base: 'src/js/',
     vendor: 'src/js/vendor/',
     dist: 'dist/js/'
+  },
+  staticFiles: {
+    images: 'src/img/',
+    fonts: 'src/fonts/',
+    index: 'src/index.html'
   }
 }
 
@@ -63,7 +68,10 @@ gulp.task('build', ['clean'], function(){
 
 gulp.task('watch', function(){
   gulp.watch(paths.css.base + '**/*', ['sass']);
-  // TODO Add watches for js files
+  gulp.watch(paths.js.base + '**/*', ['browserify-watch']);
+  gulp.watch(paths.staticFiles.index, ['copy-assets']);
+  gulp.watch(paths.staticFiles.fonts + '**/*', ['copy-assets']);
+  gulp.watch(paths.staticFiles.images + '**/*', ['copy-assets']);
 });
 
 
