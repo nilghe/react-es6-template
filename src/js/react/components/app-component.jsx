@@ -23,7 +23,7 @@ let App = React.createClass({
     render() {
         return (
             <div>
-                <h1i>React App Component</h1>
+                <h1>React App Component</h1>
 
                 {this.state.appData.map((data) => {
                     return (
