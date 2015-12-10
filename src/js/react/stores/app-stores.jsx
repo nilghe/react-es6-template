@@ -1,5 +1,5 @@
-var alt = require('../alt');
-var PostActions = require('../actions/app-actions.jsx');
+import alt         from '../alt';
+import PostActions from '../actions/app-actions.jsx';
 
 class AppStore {
     constructor() {

@@ -1,5 +1,5 @@
-var alt = require('../alt');
-var Api = require('../api/app-api.jsx');
+import alt from '../alt';
+import Api from '../api/app-api';
 
 class AppActions {
     updateData(posts) {

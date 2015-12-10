@@ -1,6 +1,6 @@
-let React       = require('react');
-let AppStore    = require('../stores/app-stores.jsx');
-let AppActions  = require('../actions/app-actions.jsx');
+import React       from 'react';
+import AppStore    from '../stores/app-stores.jsx';
+import AppActions  from '../actions/app-actions.jsx';
 
 let App = React.createClass({
     getInitialState() {
@@ -35,4 +35,4 @@ let App = React.createClass({
     }
 });
 
-module.exports = App;
+export default App;
