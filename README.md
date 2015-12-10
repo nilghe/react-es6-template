@@ -3,6 +3,7 @@ A simple reactjs app template for single page apps. Use this to get up and runni
 
 ## Quick start
 ```bash
+$ gem install sass
 $ npm install
 $ gulp build
 $ gulp webserver
