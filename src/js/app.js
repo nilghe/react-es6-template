@@ -1,5 +1,3 @@
-require('./react/app-react.jsx');
-
 $(function(){
   'use strict';
   $(document).foundation();

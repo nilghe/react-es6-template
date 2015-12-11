@@ -31,6 +31,7 @@ var paths = {
   },
   js: {
     base: 'src/js/',
+    react: 'src/js/react/',
     vendor: 'src/js/vendor/',
     dist: 'dist/js/'
   },
@@ -41,8 +42,9 @@ var paths = {
   }
 }
 
-var staticJs = {
-  app: 'app.js'
+var appJs = {
+  source: 'app-react.jsx',
+  name: 'app.js'
 }
 
 var vendorJs = [
@@ -52,7 +54,9 @@ var vendorJs = [
 ];
 
 var dependencies = [
-    'react'
+    'react',
+    'react-dom',
+    'alt'
 ];
 
 gulp.task('default', ['build', 'watch', 'browserify-watch', 'webserver']);
@@ -103,20 +107,38 @@ gulp.task('js-vendor', function(){
 });
 
 
+/**
+ * Bundle dependencies and app files together into a single app.min.js file
+ */
 gulp.task('browserify', function(){
-  return browserify(paths.js.base + staticJs.app)
+  return browserify(paths.js.react + appJs.source)
     // .external(dependencies)
     .transform(babelify, {presets: ['es2015', 'react']})
     .bundle()
-    .pipe(source(staticJs.app))
+    .pipe(source(appJs.name))
     .pipe(streamify(uglify({ mangle: false })))
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest(paths.js.dist))
 });
 
 
-gulp.task('browserify-watch', function(){
-  var bundler = watchify(browserify(paths.js.base + staticJs.app));
+/**
+ * Bundle all the dependecies together
+ */
+gulp.task('browserify-vendor', function(){
+  return browserify(paths.js.react + appJs.source)
+    .require(dependencies)
+    .transform(babelify, {presets: ['es2015', 'react']})
+    .bundle()
+    .pipe(source('vendor.app.js'))
+    .pipe(streamify(uglify({ mangle: false })))
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(gulp.dest(paths.js.dist))
+});
+
+
+gulp.task('browserify-watch', ['browserify-vendor'], function(){
+  var bundler = watchify(browserify(paths.js.react + appJs.source));
   // bundler.external(dependencies);
   bundler.transform(babelify, {presets: ['es2015', 'react']});
   bundler.on('update', rebundle);
@@ -130,7 +152,7 @@ gulp.task('browserify-watch', function(){
       .on('end', function(){
         console.log('Finished rebundling');
       })
-      .pipe(source(staticJs.app))
+      .pipe(source(appJs.name))
       .pipe(rename({ suffix: '.min' }))
       .pipe(streamify(uglify({ mangle: false })))
       .pipe(gulp.dest(paths.js.dist));
