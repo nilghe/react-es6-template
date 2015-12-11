@@ -2,23 +2,26 @@ import React       from 'react';
 import AppStore    from '../stores/app-stores.jsx';
 import AppActions  from '../actions/app-actions.jsx';
 
-let App = React.createClass({
-    getInitialState() {
-        return AppStore.getState();
-    },
+class App extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.onChange = this.onChange.bind(this)
+        this.state = AppStore.getState()
+    }
 
     componentDidMount() {
         AppStore.listen(this.onChange);
         AppActions.fetchData();
-    },
+    }
 
     componentWillUnmount() {
         AppStore.unlisten(this.onChange);
-    },
+    }
 
     onChange(state) {
         this.setState(state);
-    },
+    }
 
     render() {
         return (
@@ -33,6 +36,6 @@ let App = React.createClass({
             </div>
         )
     }
-});
+}
 
-export default App;
+module.exports = App;
