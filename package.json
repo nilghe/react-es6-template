@@ -46,5 +46,17 @@
     "react-dom": "^0.14.3",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.6.1"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "scriptPreprocessor": "node_modules/babel-jest",
+    "unmockedModulePathPatterns": [
+      "node_modules/react/",
+      "node_modules/react-dom/",
+      "node_modules/react-addons-test-utils/",
+      "node_modules/fbjs/"
+    ]
   }
 }

@@ -6,8 +6,8 @@ class App extends React.Component {
 
     constructor(props) {
         super(props);
-        this.onChange = this.onChange.bind(this)
-        this.state = AppStore.getState()
+        this.onChange = this.onChange.bind(this);
+        this.state = AppStore.getState();
     }
 
     componentDidMount() {
